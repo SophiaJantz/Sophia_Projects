@@ -1,0 +1,11 @@
+SELECT a. *,
+  CASE
+    WHEN member_casual ILIKE 'subscriber' THEN 'member'
+    WHEN member_casual ILIKE 'customer' THEN 'casual'
+    ELSE member_casual
+    END AS member_type,
+  b.temperature_avg,
+  b.precipitation
+FROM project.ford_lyft_analysis AS a
+INNER JOIN sf.weather AS b
+ON a.started_date = b.date

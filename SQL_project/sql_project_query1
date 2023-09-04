@@ -1,0 +1,28 @@
+SELECT
+  started_date,
+  started_at,
+  ended_at,
+  start_station_name,
+  end_station_name,
+  start_lat,
+  start_lng,
+  end_lat,
+  end_lng,
+  member_casual,
+  'Lyft' AS data_source
+FROM lyft.baywheels
+UNION
+SELECT
+  start_date,
+  start_time,
+  end_time,
+  start_station_name,
+  end_station_name,
+  start_station_latitude,
+  start_station_longitude,
+  end_station_latitude,
+  end_station_longitude,
+  user_type,
+  'Ford' AS data_source
+FROM ford.gobike
+WHERE DATE_PART ('year', start_date) = 2020
